@@ -31,7 +31,7 @@ model.add(Dense(1))
 
 #3. 컴파일 훈련
 model.compile(loss='mse',optimizer='adam')
-model.fit(x,y,epochs=10,batch_size=1)
+model.fit(x,y,epochs=5000,batch_size=1)
 
 #4. 평가, 예측
 loss =model.evaluate(x,y)
@@ -44,6 +44,7 @@ print('x_pred의 예측값 : ',result)
 print(x.size)
 y_predict =model.predict(x)
 
-plt.scatter(x[:,1],y)
+plt.scatter(x[:,:1],y)
+plt.scatter(x[:,1:],y)
 plt.plot(x,y_predict, color='red')
 plt.show()
