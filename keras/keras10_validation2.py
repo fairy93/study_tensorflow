@@ -21,22 +21,3 @@ print(x_test)
 print(y_test)
 print(x_val)
 print(y_val)
-
-# #2. 모델 구성
-# model = Sequential()
-# model.add(Dense(5,input_dim=1))
-# model.add(Dense(4))
-# model.add(Dense(1))
-
-
-
-# #3. 컴파일, 훈련
-# model.compile(loss='mse', optimizer='adam')
-# model.fit(x_train,y_train,epochs=100,batch_size=1,validation_data=(x_val,y_val))
-
-# #4. 평가, 예측
-# loss = model.evaluate(x_test,y_test) # 평가
-# print('loss : ',loss)
-
-# y_predict = model.predict([11])
-# print('y_predic 의 값은 ',y_predict)
