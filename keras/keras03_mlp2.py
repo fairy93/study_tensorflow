@@ -4,14 +4,6 @@ from tensorflow.keras.layers import Dense
 from matplotlib import pyplot as plt
 import numpy as np
 
-# 예제
-# [1,2,3] 1x3 (3,)
-# [[1,2,3]] 1x3
-# [[1,2],[3,4],[5,6]] 3x2
-# [[[1,2,3],[4,5,6]]] (1)*2*3
-# [[1,2],[3,4],[5,6]] (1)*3*2
-# [[[1],[2]],[[3],[4]]] (2)*2*1 
-
 
 #1. 데이터
 x = np.array([[1,2,3,4,5,6,7,8,9,10],[1, 1.1, 1.2, 1.3, 1.4, 1.5, 1.6, 1.5, 1.4, 1.3],[10,9,8,7,6,5,4,3,2,1]]) # (3,10)
@@ -41,23 +33,7 @@ x_pred=np.array([[10, 1.3, 1]])
 result=model.predict(x_pred)
 print('x_pred의 예측값 : ',result)
 
-
-
 y_predict =model.predict(x)
 plt.scatter(x[:,:1],y)
 plt.plot(x,y_predict, color='red')
 plt.show()
-# # 1
-# loss :  0.07718886435031891
-# (1, 3)
-# x_pred의 예측값 :  [[20.020918]]
-
-# # 2
-# loss :  0.0031713363714516163
-# x_pred의 예측값 :  [[19.906908]]
-
-#shape 가뭐야
-
-# # 3 epochs
-# loss :  1.4781160189158982e-06
-# x_pred의 예측값 :  [[19.99908]]

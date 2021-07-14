@@ -24,7 +24,7 @@ model.add(Dense(1))
 
 #3. 컴파일 훈련
 model.compile(loss='mse', optimizer='adam')
-model.fit(x,y,epochs=1200, batch_size=1)
+model.fit(x,y,epochs=3500, batch_size=1)
 
 #4. 평가 예측
 loss = model.evaluate(x,y)
@@ -32,3 +32,9 @@ print('loss : ', loss)
 
 result = model.predict(x_pred)
 print('x_pred의 예측값은 : ',result)
+
+# #결과 21.07.14
+# loss='mse', optimizer='adam'
+# epochs=3500, batch_size=1
+# loss :  0.380158931016922
+# x_pred의 예측값은 :  [[5.721794]]

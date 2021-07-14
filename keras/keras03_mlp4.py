@@ -3,16 +3,6 @@ from tensorflow.keras.models import Sequential
 from tensorflow.keras.layers import Dense
 from matplotlib import pyplot as plt
 import numpy as np
-# import matplotlib.pyplot as plt
-
-# 예제
-# [1,2,3] 1x3 (3,)
-# [[1,2,3]] 1x3
-# [[1,2],[3,4],[5,6]] 3x2
-# [[[1,2,3],[4,5,6]]] (1)*2*3
-# [[1,2],[3,4],[5,6]] (1)*3*2
-# [[[1],[2]],[[3],[4]]] (2)*2*1 
-
 
 #1. 데이터
 x=np.array([range(10)])
