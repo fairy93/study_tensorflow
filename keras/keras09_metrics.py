@@ -6,7 +6,6 @@ import numpy as np
 import time
 
 
-
 #1. 데이터
 x = np.array([[1,2,3,4,5,6,7,8,9,10],[1, 1.1, 1.2, 1.3, 1.4, 1.5, 1.6, 1.5, 1.4, 1.3],[10,9,8,7,6,5,4,3,2,1]]) # (3,10)
 x = np.transpose(x)
@@ -37,9 +36,9 @@ print('loss : ',loss)
 x_pred=np.array([[10, 1.3, 1]])
 result=model.predict(x_pred)
 print('x_pred의 예측값 : ',result)
-print(x.shape)
 
-# metrics 훈련에 영향 미치지않아
-# mae 뭐???
-# 1. mae란 지표를 찾을것
-#2. rmse란 지표를 찾을것(root) 제고하니까너무커져 그래서 루트
+
+# #결과 21.07.14
+# loss : [loss=mse,metrics=mae]
+# loss :  [0.004110205918550491, 0.054173849523067474]
+

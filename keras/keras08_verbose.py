@@ -1,11 +1,7 @@
-from numpy.core.fromnumeric import shape, squeeze
 from tensorflow.keras.models import Sequential
 from tensorflow.keras.layers import Dense, Input
-from matplotlib import pyplot as plt
 import numpy as np
 import time
-
-
 
 #1. 데이터
 x = np.array([[1,2,3,4,5,6,7,8,9,10],[1, 1.1, 1.2, 1.3, 1.4, 1.5, 1.6, 1.5, 1.4, 1.3],[10,9,8,7,6,5,4,3,2,1]]) # (3,10)
@@ -26,9 +22,10 @@ model.add(Dense(1))
 #3. 컴파일 훈련
 start=time.time()
 model.compile(loss='mse',optimizer='adam')
-model.fit(x,y,epochs=1000,batch_size=1,verbose=3)
+model.fit(x,y,epochs=1000,batch_size=10,verbose=1)
 end= time.time()-start
 print(end)
+
 # verbose = 0
 # 결과만 보여줘 처리시간
 # time = 14.904160261154175
@@ -36,7 +33,6 @@ print(end)
 # verbose = 1
 # default 
 # time = 21.22871446609497
-
 
 # verbose = 2
 # 훈련내용+epochs
@@ -48,3 +44,11 @@ print(end)
 
 # verbos = 1 일때
 # batch=1, 10인 경우 시간측정
+
+# #결과 21.07.14
+# verbos = 1 일때,batch_size=1,10 의 시간측정
+# batch_size=1
+# time=20.970410108566284
+# batch_size=10
+# time=3.662076473236084
+

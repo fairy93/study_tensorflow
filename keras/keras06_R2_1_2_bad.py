@@ -17,21 +17,15 @@ import numpy as np
 # 모델엔 2가지 있어 순차적모델, 함수형 모델
 
 #1. 데이터
-# 과적합? 내신잘봐봣자 수능못보면 소요없어
-# 훈련용 테스트 데이터 구분
 x=np.array(range(100))
 y=np.array(range(1,101))
 
-# ,random_state=1004 고정
-x_train, x_test, y_train, y_test = train_test_split(x,y,test_size=0.3,shuffle=True,random_state=1004)
+x_train, x_test, y_train, y_test = train_test_split(x,y,test_size=0.3,shuffle=True,random_state=1080)
 
 #2. 모델 구성
 model = Sequential()
-model.add(Dense(10, input_dim=1))
-model.add(Dense(30))
-model.add(Dense(30))
-model.add(Dense(30))
-model.add(Dense(30))
+model.add(Dense(500, input_dim=1))
+model.add(Dense(2))
 model.add(Dense(1))
 
 
@@ -51,4 +45,3 @@ print('y_predic 의 값은 ',y_predict)
 
 r2= r2_score(y_test,y_predict)
 print(r2)
-
