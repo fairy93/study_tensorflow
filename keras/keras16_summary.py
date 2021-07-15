@@ -17,6 +17,6 @@ model = Sequential()
 model.add(Dense(3,input_shape=(5,)))
 model.add(Dense(4))
 model.add(Dense(10))
-model.add(Dense(2))
+model.add(Dense(1))
 
 model.summary()

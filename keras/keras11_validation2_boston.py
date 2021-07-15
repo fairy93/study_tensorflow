@@ -3,8 +3,9 @@ from sklearn.model_selection import train_test_split
 from sklearn.metrics import r2_score
 from tensorflow.keras.models import Sequential
 from tensorflow.keras.layers import Dense
-from matplotlib import pyplot as plt
 import numpy as np
+
+#1 . 데이터
 datasets = load_boston()
 x=datasets.data
 y=datasets.target
@@ -14,9 +15,10 @@ x_train, x_test, y_train, y_test = train_test_split(x,y,test_size=0.3,shuffle=Tr
 #2. 모델 구성
 model = Sequential()
 model.add(Dense(5,input_dim=13))
-model.add(Dense(100))
-model.add(Dense(90))
-model.add(Dense(110))
+model.add(Dense(16))
+model.add(Dense(32))
+model.add(Dense(16))
+model.add(Dense(4))
 model.add(Dense(1))
 
 #3. 컴파일구현
@@ -30,7 +32,13 @@ y_predict = model.predict(x_test)
 print('예측값 ',y_predict)
 
 
-
 #5. r2 예측r2
 r2= r2_score(y_test,y_predict)
 print(r2)
+
+
+# #결과 21.07.14
+# loss='mse', optimizer='adam'
+# epochs=120, batch_size=1
+# loss 32.33646011352539
+# r2 : 0.6492510001273941

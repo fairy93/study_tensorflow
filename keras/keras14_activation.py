@@ -1,12 +1,9 @@
 import numpy as np
-import pandas as pd
 from sklearn import datasets
-from sklearn.datasets import load_boston
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import r2_score
 from tensorflow.keras.models import Sequential
 from tensorflow.keras.layers import Dense
-from matplotlib import pyplot as plt
 import numpy as np
 from sklearn.datasets import load_diabetes # 당뇨
 

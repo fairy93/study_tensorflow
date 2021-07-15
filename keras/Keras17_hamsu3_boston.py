@@ -19,5 +19,5 @@ dense3 = Dense(90)(dense2)
 dense4 = Dense(110)(dense3)
 output1 = Dense(1)(dense4)
 
-model = Model(inputs=input1,outputs=output1)
+model = Model(inputs=input1, outputs=output1)
 model.summary()

@@ -1,7 +1,6 @@
 from numpy.core.fromnumeric import shape, squeeze
 from tensorflow.keras.models import Sequential
 from tensorflow.keras.layers import Dense
-from matplotlib import pyplot as plt
 import numpy as np
 
 #1. 데이터
@@ -12,11 +11,7 @@ y=np.transpose(y) #(10,)
 
 #2. 모델구성 (행무시 열우선)
 model = Sequential()
-# model.add(Dense(1, input_dim=3))
 model.add(Dense(1, input_shape=(3,)))
-# model.add(Dense(12))
-# model.add(Dense(13))
-# model.add(Dense(8))
 model.add(Dense(1))
 
 #3. 컴파일 훈련
@@ -32,7 +27,3 @@ result=model.predict(x_pred)
 print('x_pred의 예측값 : ',result)
 
 
-y_predict =model.predict(x)
-plt.scatter(x[:,:1],y)
-plt.plot(x,y_predict, color='red')
-plt.show()

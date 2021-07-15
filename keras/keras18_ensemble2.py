@@ -3,13 +3,14 @@ import numpy as np
 from scipy.sparse.construct import rand
 from tensorflow.python.keras.layers.core import Activation
 from sklearn.model_selection import train_test_split
+from sklearn.metrics import r2_score
 
 x1 = np. array([range(100),range(301,401),range(1,101)])
 x2 = np .array([range(101,201),range(411,511),range(100,200)])
 x1 = np.transpose(x1)
 x2 = np.transpose(x2)
-# y1=np.array([range(1001,1101)])
-# y1=np.transpose(y1)
+y1 = np.array([range(1001,1101)])
+y1 = np.transpose(y1)
 y1 = np.array(range(1001,1101))
 y2 = np.array(range(1901,2001))
 
@@ -49,8 +50,8 @@ from tensorflow.keras.layers import concatenate, Concatenate
 merge1 = Concatenate()([output1,output2])
 merge2 = Dense(10)(merge1)
 merge3 = Dense(5, activation='relu')(merge2)
-# last_output = Dense(1)(merge3)
-
+# last_output = Dense(1)(merge3) input = 2 , output = 1
+# last_output1, last_output2 input =2 , output=2 
 output21 = Dense(7)(merge3)
 last_output1 = Dense(1)(output21)
 
@@ -62,11 +63,10 @@ model.summary()
 
 #3. 컴파일 훈련
 model.compile(loss='mse', optimizer='adam', metrics=['mae'])
-model.fit([x1_train, x2_train],[y1_train,y2_train], epochs=100,batch_size=9,verbose=1)
+model.fit([x1_train, x2_train],[y1_train,y2_train], epochs=100,batch_size=32,verbose=1)
 
 #4. 평가, 예측
-results=model.evalute([x1_test,x2_test],[y1_test,y2_test])
-print('loss: ',results[0])
-print('metrics[mae] :', results[1])
+loss=model.evaluate([x1_test,x2_test],[y1_test,y2_test])
+print('loss: ',loss[0])
+print('metrics[mae] :', loss[1])
 
-#loss가 7개나와 레어이름나와
