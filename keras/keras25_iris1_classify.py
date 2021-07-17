@@ -68,5 +68,5 @@ print('accuracy : ',loss[1])
 # 결과 2021.07.16
 # epochs=1000,batch_size=8,validation_batch_size=0.2
 # loss (binary_crossentropy) 0.4764081835746765
-loss 0.2432488352060318
-accuracy :  0.9777777791023254
+# loss 0.2432488352060318
+# accuracy :  0.9777777791023254

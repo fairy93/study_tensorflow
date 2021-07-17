@@ -14,15 +14,15 @@ x_pred=[6]
 
 #2. 모델 구성
 model = Sequential()
-model.add(Dense(4,input_dim=1))
-model.add(Dense(8))
-model.add(Dense(2))
+model.add(Dense(100,input_dim=1))
+model.add(Dense(100))
+model.add(Dense(100))
+model.add(Dense(100))
 model.add(Dense(1))
-
 
 #3. 컴파일, 훈련
 model.compile(loss='mse', optimizer='adam')
-model.fit(x_train,y_train,epochs=5000,batch_size=1)
+model.fit(x_train,y_train,epochs=4000,batch_size=1)
 
 #4. 평가, 예측
 loss = model.evaluate(x_test,y_test) # 평가
@@ -35,4 +35,10 @@ print('y_predic 의 값은 ',y_predict)
 # loss='mse', optimizer='adam'
 # epochs=5000, batch_size=1
 # loss :  6.063298192519884e-13
+# y_predic 의 값은  [[11.]]
+
+# #결과 21.07.17
+# loss='mse', optimizer='adam'
+# epochs=4000, batch_size=1
+# loss :  0.0
 # y_predic 의 값은  [[11.]]
