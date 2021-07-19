@@ -4,6 +4,7 @@ from tensorflow.keras.datasets import mnist
 from tensorflow.keras.models import Sequential
 from sklearn.preprocessing import OneHotEncoder
 from tensorflow.keras.layers import Dense, Conv2D, Flatten, MaxPool2D
+from tensorflow.python.keras.engine import input_spec
 
 #1. 데이터
 (x_train, y_train), (x_test, y_test) = mnist.load_data()
@@ -12,8 +13,8 @@ from tensorflow.keras.layers import Dense, Conv2D, Flatten, MaxPool2D
 # print(x_test.shape, y_test.shape)# (10000, 28, 28) (10000,)
 
 
-x_train = x_train.reshape(60000, 28, 28, 1)  # 컨불루션은 4차원 데이터를 받기 떄문에 넣기전에 무조건 4차원으로 바꿔줘야함
-x_test = x_test.reshape(10000, 28, 28, 1)
+x_train = x_train.reshape(60000, 28*28)  # 컨불루션은 4차원 데이터를 받기 떄문에 넣기전에 무조건 4차원으로 바꿔줘야함
+x_test = x_test.reshape(10000, 28*28)
 y_train = y_train.reshape(60000, 1)
 y_test = y_test.reshape(10000, 1)
 
@@ -22,21 +23,16 @@ y_train = ohe.fit_transform(y_train).toarray()
 y_test = ohe.fit_transform(y_test).toarray()
 
 
-
 #2. 모델 구성
 model =Sequential()
-model.add(Conv2D(100, kernel_size=(2,2), padding='same', input_shape=(28, 28, 1)))
-model.add(Conv2D(120, (2,2), activation='relu'))
-model.add(Conv2D(80, (2,2), activation='relu'))
-model.add(Conv2D(70, (2,2), activation='relu'))
-model.add(Conv2D(70, (2,2), activation='relu'))
-model.add(Conv2D(70, (2,2), activation='relu'))
-model.add(Flatten())
+model.add(Dense(100,input_shape=(28*28,)))
 model.add(Dense(64, activation='relu'))
 model.add(Dense(32))
 model.add(Dense(10, activation='softmax'))
 
-
+# # dnn 구해서 cnn 비교
+# dnn+ gap 구해서 cnn 비ㅛㄱ
+# 4시
 #3. 컴파일 훈련 
 from tensorflow.keras.callbacks import EarlyStopping
 es = EarlyStopping(monitor='val_loss', patience= 5, mode= 'min')

@@ -11,4 +11,4 @@ print(x_train[120])
 print("y_train[120] 값 : ", y_train[120])
 
 plt.imshow(x_train[120], 'gray')
-plt.show()
+plt.show()                  
