@@ -8,9 +8,7 @@ import numpy as np
 x = np.array(range(100))
 y = np.array(range(1, 101))
 
-# ,random_state=1004 고정
-x_train, x_test, y_train, y_test = train_test_split(
-    x, y, test_size=0.3, shuffle=True)
+x_train, x_test, y_train, y_test = train_test_split(x, y, test_size=0.3, shuffle=True,random_state=80)
 
 #2. 모델 구성
 model = Sequential()

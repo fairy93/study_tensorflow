@@ -10,13 +10,14 @@ x_pred=[6]
 
 model = Sequential()
 model.add(Dense(1,input_dim=1))
-model.add(Dense(8))
-model.add(Dense(16))
-model.add(Dense(4))
+model.add(Dense(64))
+model.add(Dense(128))
+model.add(Dense(64))
+model.add(Dense(32))
 model.add(Dense(1))
 model.compile(loss='mse', optimizer='adam')
 
-model.fit(x,y,epochs=1500,batch_size=1)
+model.fit(x,y,epochs=10000,batch_size=32)
 
 #4. 평가, 예측
 loss = model.evaluate(x,y) # 평가
@@ -34,3 +35,9 @@ print(r2)
 # epochs=1500, batch_size=1
 # loss :  0.38063496351242065
 # r2 : 0.8096825191879915
+
+# #결과 21.07.14
+# loss='mse', optimizer='adam'
+# epochs=3000, batch_size=32
+# loss :  0.37999993562698364
+# r2 : 0.8100000190734746
