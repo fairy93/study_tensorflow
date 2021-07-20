@@ -5,7 +5,6 @@ from sklearn.metrics import r2_score
 from tensorflow.keras.models import Sequential, Model
 from tensorflow.keras.layers import Dense, Input
 from sklearn.datasets import load_diabetes
-from tensorflow.python.keras.backend import shape 
 
 #1. 데이터
 datasets =load_diabetes()

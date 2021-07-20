@@ -48,5 +48,5 @@ last_output = Dense(1)(merge3)
 model = Model(inputs=[input1,input2],outputs=last_output)
 model.summary()
 
-model.fit([x1_train, x2_train],y_train, epp)
+model.fit([x1_train, x2_train],y_train, epochs=100, batch_size=8, verbose=2)
 res=model.evalute([x1_test,x2_test],y_test)

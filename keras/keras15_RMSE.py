@@ -36,6 +36,6 @@ print(r2)
 def RMSE(y_test, y_predict):
     return np.sqrt(mean_squared_error(y_test,y_predict))
 
-rmse =RMSE(y_test,y_predict)
+rmse = RMSE(y_test,y_predict)
 print('rmse 스코어 : ',rmse)
 
