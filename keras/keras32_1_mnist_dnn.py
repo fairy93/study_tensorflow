@@ -31,13 +31,13 @@ model.add(Dense(32))
 model.add(Dense(10, activation='softmax'))
 
 # # dnn 구해서 cnn 비교
-# dnn+ gap 구해서 cnn 비ㅛㄱ
+# dnn+ gap 구해서 cnn 비ㅛㄱ 
 # 4시
 #3. 컴파일 훈련 
 from tensorflow.keras.callbacks import EarlyStopping
 es = EarlyStopping(monitor='val_loss', patience= 5, mode= 'min')
 model.compile(loss='categorical_crossentropy', optimizer='adam', metrics=['accuracy'])
-model.fit(x_train,y_train, epochs=1000,batch_size=32, validation_split=0.2,verbose=3,callbacks=[es])
+model.fit(x_train,y_train, epochs=1000,batch_size=32, validation_split=0.2,verbose=2,callbacks=[es])
 
 
 #4. 평가, 예측
