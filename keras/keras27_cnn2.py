@@ -14,12 +14,3 @@ model.add(Dense(32))
 model.add(Dense(1,activation='sigmoid'))
 model.summary()
 
-
-# #rhkwp1 con2d 디폴트 액티비
-# 과제2 컨2ㅇ summary 파라미터갯수 완벽이해
-# 패딩 맥스폴링은쓰고싶을때 데이터처리할떄 인공지능은 한땀한땀하는거야
-# 101010
-# 9920
-# 8830
-# 4430
-# 400
