@@ -46,7 +46,6 @@ print(hist.history['loss'])
 print(hist.history['val_loss'])
 
 
-
 import matplotlib.pyplot as plt
 import matplotlib
 matplotlib.font_manager._rebuild()

@@ -7,15 +7,17 @@ from sklearn.utils import validation
 from tensorflow.keras.models import Sequential
 from tensorflow.keras.layers import Dense
 import numpy as np
+
 datasets=load_breast_cancer()
 
-print(datasets.DESCR)
-print(datasets.feature_names)
 
-x= datasets.data
-y=datasets.target
+# print(datasets.DESCR)
+# print(datasets.feature_names)
 
-print(x.shape, y.shape) # (569, 30) (569,)
+x = datasets.data
+y = datasets.target
+
+# print(x.shape, y.shape) # (569, 30) (569,)
 
 x_train, x_test, y_train, y_test = train_test_split(x,y,test_size=0.3,shuffle=True,random_state=70)
 
@@ -67,7 +69,7 @@ print(y_test[-5:-1])
 y_predict = model.predict(x_test[-5:-1])
 print(y_predict)
 
-# 결과 2021.07.16
-# epochs=1000,batch_size=8,validation_batch_size=0.2
-# loss (binary_crossentropy) 0.4764081835746765
-# accuracy :  0.9532163739204407
+# # 결과 2021.07.16
+# # epochs=1000,batch_size=8,validation_batch_size=0.2
+# # loss (binary_crossentropy) 0.4764081835746765
+# # accuracy :  0.9532163739204407

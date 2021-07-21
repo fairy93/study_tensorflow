@@ -1,63 +1,63 @@
+from sklearn.preprocessing import StandardScaler, MinMaxScaler
+from tensorflow.keras.utils import to_categorical
 from sklearn.datasets import load_boston
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import r2_score
-from tensorflow.keras.models import Sequential, Model
-from tensorflow.keras.layers import Dense,Input
-from matplotlib import pyplot as plt
-import numpy as np
+from tensorflow.keras.models import Sequential,Model
+from tensorflow.keras.layers import Dense, Input
+from tensorflow.keras.callbacks import EarlyStopping
 from sklearn.datasets import load_wine
+import numpy as np
+import time
 
 #완성하시오
 # acc0.8.이상만들것
+
+#1. 데이터
 datasets = load_wine()
-print(datasets.DESCR)
-print(datasets.feature_names)
 
-x=datasets.data
-y=datasets.target
-print(x.shape, y.shape)
-x_train, x_test, y_train, y_test = train_test_split(x,y,test_size=0.3,shuffle=True,random_state=70)
+x = datasets.data
+y = datasets.target
 
+y = to_categorical(y)
 
-from sklearn.preprocessing import MinMaxScaler, StandardScaler,MaxAbsScaler,RobustScaler,QuantileTransformer,PowerTransformer
-# scaler = MinMaxScaler()
-# scaler = StandardScaler()
-# scaler= MaxAbsScaler()
-# scaler= RobustScaler()
-# scaler= QuantileTransformer()
-scaler = PowerTransformer()
+x_train, x_test, y_train, y_test = train_test_split(
+    x, y, train_size=0.7, shuffle=True, random_state=20)
+
+scaler = MinMaxScaler()
 scaler.fit(x_train)
-x_train= scaler.transform(x_train)
+x_train = scaler.transform(x_train)
 x_test = scaler.transform(x_test)
 
 
-#2. 모델 구성
-input1 = Input(shape=(13,))
-dense1 = Dense(32, activation='relu',name='dense1')(input1)
-dense2 = Dense(64, activation='relu',name='dense2')(dense1)
-dense3 = Dense(128, activation='relu',name='dense3')(dense2)
-dense4 = Dense(64, activation='relu',name='dense4')(dense3)
-dense5 = Dense(32, activation='relu',name='dense5')(dense4)
-dense6 = Dense(16, activation='relu',name='dense6')(dense5)
-dense7 = Dense(8, activation='relu',name='dense7')(dense6)
-output1 = Dense(1)(dense7)
+#2. 모델 구상
 
-model = Model(inputs=input1, outputs=output1)
+model = Sequential()
+model.add(Dense(64, input_shape=(13,)))
+model.add(Dense(128, activation='relu'))
+model.add(Dense(256, activation='relu'))
+model.add(Dense(128, activation='relu'))
+model.add(Dense(64, activation='relu'))
+model.add(Dense(32, activation='relu'))
+model.add(Dense(3, activation='softmax'))
 
-#3. 컴파일구현
-model.compile(loss='mse', optimizer='adam')
-model.fit(x_train,y_train,epochs=1000,batch_size=4,validation_split=0.2,verbose=2)
+#3. 컴파일, 구현
+model.compile(loss='categorical_crossentropy',
+              optimizer='adam', metrics=['acc'])
+es = EarlyStopping(monitor='val_loss', patience=5, mode='min')
+start_time = time.time()
+model.fit(x_train, y_train, epochs=100, batch_size=8,
+          verbose=2, validation_split=0.3, callbacks=[es])
+end_time = time.time() - start_time
 
-#4. 평가, 예측
-loss = model.evaluate(x_test,y_test)
-print('loss',loss)
-y_predict = model.predict(x_test)
-# print('예측값 ',y_predict)
+#4. 평가 예측
+loss = model.evaluate(x_test, y_test)
+print('time', end_time)
+print('loss ', loss[0])
+print('acc', loss[1])
 
-#5. r2 예측r2
-r2= r2_score(y_test,y_predict)
-print(r2)
-
-# #결과 07.15
-# loss 0.03506023436784744
-# r2 0.9444673310786067
+# 결과 07.21
+# epochs=100, batch_size=8
+# time 2.4942734241485596
+# loss  0.0605735220015049
+# acc 0.9814814925193787
