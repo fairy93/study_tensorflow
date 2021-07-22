@@ -6,21 +6,21 @@ from numpy import array
 from tensorflow.keras.callbacks import EarlyStopping
 
 #1. 데이터
-x1 = array([[1,2,3], [2,3,4], [3,4,5], [4,5,6],
-                [5,6,7], [6,7,8], [7,8,9], [8,9,10],
-                [9,10,11], [10,11,12], [20,30,40],
-                [30,40,50], [40,50,60]]) 
-x2 = array([[10,20,30], [20,30,40], [30,40,50], [40,50,60],
-                [30,60,70], [60,70,80], [70,80,90], [80,90,100],
-                [90,100,110], [100,110,120], 
-                [2,3,4], [3,4,5],[4,5,6]])
-y = array([4,5,6,7,8,9,10,11,12,13,50,60,70]) 
+x1 = array([[1, 2, 3], [2, 3, 4], [3, 4, 5], [4, 5, 6],
+            [5, 6, 7], [6, 7, 8], [7, 8, 9], [8, 9, 10],
+            [9, 10, 11], [10, 11, 12], [20, 30, 40],
+            [30, 40, 50], [40, 50, 60]])
+x2 = array([[10, 20, 30], [20, 30, 40], [30, 40, 50], [40, 50, 60],
+            [30, 60, 70], [60, 70, 80], [70, 80, 90], [80, 90, 100],
+            [90, 100, 110], [100, 110, 120],
+            [2, 3, 4], [3, 4, 5], [4, 5, 6]])
+y = array([4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 50, 60, 70])
 
 x1_predict = array([55, 65, 75])
 x2_predict = array([65, 75, 85])
 
 
-x1 = x1.reshape(x1.shape[0],x1.shape[1], 1)
+x1 = x1.reshape(x1.shape[0], x1.shape[1], 1)
 # (batch_size, timesteps, feature)
 x2 = x2.reshape(x2.shape[0], x2.shape[1], 1)
 x1_predict = x1_predict.reshape(1, x1_predict.shape[0], 1)
@@ -65,7 +65,8 @@ model.fit([x1, x2], y, epochs=1000, batch_size=32, verbose=1, callbacks=[es])
 loss = model.evaluate([x1, x2], y)
 res = model.predict([x1_predict, x2_predict])
 print('loss: ', loss)
-print('res',res)
+print('res', res)
 
+# 결과 210722
 # loss:  0.00012670241994783282
 # res [[85.25797]]
