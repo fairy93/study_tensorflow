@@ -22,7 +22,7 @@ model.add(Dense(1))
 #3. 컴파일 훈련
 start=time.time()
 model.compile(loss='mse',optimizer='adam')
-model.fit(x,y,epochs=1000,batch_size=10,verbose=1)
+model.fit(x,y,epochs=1000,batch_size=10,verbose=3)
 end= time.time()-start
 print(end)
 
@@ -35,7 +35,7 @@ print(end)
 # time = 21.22871446609497
 
 # verbose = 2
-# 훈련내용+epochs
+# epochs+loss
 # time = 16.97713875770569
 
 # verbose = 3

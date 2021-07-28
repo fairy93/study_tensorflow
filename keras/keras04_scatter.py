@@ -14,7 +14,6 @@ model.add(Dense(5,input_dim=1))
 model.add(Dense(4))
 model.add(Dense(1))
 
-
 #3. 컴파일, 훈련
 model.compile(loss='mse', optimizer='adam')
 model.fit(x,y,epochs=20000,batch_size=1)

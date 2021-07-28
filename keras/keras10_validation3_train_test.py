@@ -1,7 +1,6 @@
 from scipy.sparse.construct import rand
 from tensorflow.keras.models import Sequential
 from tensorflow.keras.layers import Dense
-from matplotlib import pyplot as plt
 from sklearn.model_selection import train_test_split
 import numpy as np
 # 모델엔 2가지 있어 순차적모델, 함수형 모델

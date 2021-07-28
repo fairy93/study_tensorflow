@@ -1,50 +1,68 @@
+from sklearn.datasets import load_boston
+from sklearn.model_selection import train_test_split
+from sklearn.metrics import r2_score
+from tensorflow.keras.models import Sequential, Model
+from tensorflow.keras.layers import Dense, Input, Conv2D, Flatten, MaxPooling2D, GlobalAveragePooling1D, Dropout,Conv1D
+from matplotlib import pyplot as plt
 import numpy as np
-from tensorflow.python.keras.layers.core import Flatten
-# 실습
-# 1~100까지의 데이터를
+from sklearn.preprocessing import OneHotEncoder
+from tensorflow.keras.callbacks import EarlyStopping
+from sklearn.preprocessing import MinMaxScaler, StandardScaler
+import time
+from tensorflow.python.keras.backend import conv2d
 
-#       X           Y
-# 1,2,3,4,5         6
-# ....
-# 95,96,97,98,99   100
+#1. 데이터
+datasets = load_boston()
+x = datasets.data
+y = datasets.target
 
+x_train, x_test, y_train, y_test = train_test_split(
+    x, y, test_size=0.3, shuffle=True, random_state=70)
 
-x_data = np.array(range(1, 101))
-x_predict = np.array(range(96,106))
+scaler = StandardScaler()
+scaler.fit(x_train)
+x_train = scaler.transform(x_train)
+x_test = scaler.transform(x_test)
+print(x_train.shape[0], x_test.shape[0])
 
-#           x
-# 96,97,98,99,1100          ?
-# ....
-# 101,102,103,104,105,106   ?
-# 예상 결과값 : 10 102 013 014 105 106
-size =6
+x_train = x_train.reshape(x_train.shape[0], x_train.shape[1], 1)
+x_test = x_test.reshape(x_test.shape[0], x_test.shape[1], 1)
 
-def split_x(dataset, size):
-    aaa = []
-    for i in range(len(dataset) - size + 1):
-        subset = dataset[i : (i + size)]
-        aaa.append(subset)
-    return np.array(aaa)
-
-dataset = split_x(x_data, size)
-
-print(dataset) 
-
-# x = dataset[:, :5].reshape(95,5,1)
-x = dataset[:, :5y = dataset[:, 5]
-
-# print("x : ", x) 
-# print("y : ", y) 
-
-#모델 구성
-from tensorflow.keras.models import Sequential
-from tensorflow.keras.layers import Dense, LSTM, Conv1D
-
+#2. 모델 구성
 model = Sequential()
-# model.add(LSTM(64, input_shape=(5,1)))
-model.add(Conv1D(64,2,input_shape=(5,1)))
-model.add(Flatten())
-model.add(Dense(10))
+model.add(Conv1D(filters=100, kernel_size=2,
+          padding='same', input_shape=(13, 1)))
+model.add(Dropout(0.2))
+model.add(Conv1D(80, 2, padding='same', activation='relu'))
+model.add(Dropout(0.2))
+model.add(Conv1D(80, 2, padding='same', activation='relu'))
+model.add(Dropout(0.2))
+model.add(Conv1D(80, 2, padding='same', activation='relu'))
+model.add(GlobalAveragePooling1D())
 model.add(Dense(1))
 
-model.summary()
+
+#3. 컴파일 구현
+model.compile(loss='mse', optimizer='adam')
+es = EarlyStopping(monitor='val_loss', patience=30, mode='min', verbose=1)
+start_time = time.time()
+model.fit(x_train, y_train, epochs=1000, batch_size=32,
+          validation_split=0.2, verbose=2, callbacks=[es])
+end_time = time.time()-start_time
+
+
+#4. 평가 예측
+loss = model.evaluate(x_test, y_test)
+y_predict = model.predict(x_test)
+
+#5. r2
+r2 = r2_score(y_test, y_predict)
+
+print('time', end_time)
+print('loss', loss)
+print('r2', r2)
+
+# 21.07.28
+# time 15.841265201568604
+# loss 20.993484497070312
+# r2 0.7832846084943887

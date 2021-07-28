@@ -26,7 +26,6 @@ from tensorflow.keras.preprocessing.sequence import pad_sequences
 pad_x = pad_sequences(x,padding='pre',maxlen=5) # post
 print(pad_x)
 print(pad_x.shape) # 13.5
-
 word_size = len(token.word_index)
 print(word_size)  # 27
 

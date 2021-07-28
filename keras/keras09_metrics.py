@@ -1,7 +1,6 @@
 from numpy.core.fromnumeric import shape, squeeze
 from tensorflow.keras.models import Sequential
 from tensorflow.keras.layers import Dense, Input
-from matplotlib import pyplot as plt
 import numpy as np
 import time
 

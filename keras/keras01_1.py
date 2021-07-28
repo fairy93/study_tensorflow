@@ -16,7 +16,7 @@ model.compile(loss='mse', optimizer='adam')
 model.fit(x, y, epochs=3000, batch_size=1)
 
 #4. 평가, 예측
-loss = model.evaluate(x, y) 
+loss = model.evaluate(x, y)
 print('loss : ', loss)
 
 result = model.predict([4])

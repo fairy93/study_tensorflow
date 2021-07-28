@@ -11,8 +11,9 @@ y=np.transpose(y) #(10,)
 
 #2. 모델구성 (행무시 열우선)
 model = Sequential()
-model.add(Dense(1, input_shape=(3,)))
+model.add(Dense(1, input_shape=(3,))) # input_shape에서 (3,)은 행의 갯수를 뜻하고 input_dim에서 3은 입력 차원
 model.add(Dense(1))
+
 
 #3. 컴파일 훈련
 model.compile(loss='mse',optimizer='adam')

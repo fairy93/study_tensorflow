@@ -4,6 +4,7 @@ from sklearn.metrics import r2_score
 from tensorflow.keras.models import Sequential
 from tensorflow.keras.layers import Dense
 import numpy as np
+
 datasets = load_boston()
 x=datasets.data
 y=datasets.target
