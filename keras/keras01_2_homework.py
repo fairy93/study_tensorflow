@@ -1,4 +1,3 @@
-from tensorflow.core.protobuf.config_pb2 import OptimizerOptions
 from tensorflow.keras.models import Sequential
 from tensorflow.keras.layers import Dense
 import numpy as np

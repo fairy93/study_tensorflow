@@ -9,7 +9,7 @@ datasets = load_boston()
 x=datasets.data
 y=datasets.target
 
-datasets.feature_names
+# datasets.feature_names
 x_train, x_test, y_train, y_test = train_test_split(x,y,train_size=0.8, shuffle=True,random_state=19)
 
 #2. 모델 구성
