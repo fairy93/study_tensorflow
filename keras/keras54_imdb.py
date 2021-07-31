@@ -46,3 +46,6 @@ end_time = time.time() - start_time
 acc = model.evaluate(x_test, y_test)[1]
 print("time : ", end_time)
 print('acc : ', acc)
+
+# time :  85.60995507240295
+# acc :  0.8332800269126892
