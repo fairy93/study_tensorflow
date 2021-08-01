@@ -3,7 +3,7 @@ from tensorflow.keras.utils import to_categorical
 from sklearn.datasets import load_boston
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import r2_score
-from tensorflow.keras.models import Sequential,Model
+from tensorflow.keras.models import Sequential, Model
 from tensorflow.keras.layers import Dense, Input
 from tensorflow.keras.callbacks import EarlyStopping
 from sklearn.datasets import load_wine

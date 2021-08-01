@@ -1,15 +1,16 @@
 from tensorflow.keras.models import Sequential, Model
-from tensorflow.keras.layers import Dense,Input
+from tensorflow.keras.layers import Dense, Input
 from sklearn.model_selection import train_test_split
 from sklearn.datasets import load_boston
 import numpy as py
 
 #1. 데이터
-datasets=load_boston()
-x=datasets.data
-y=datasets.target
+datasets = load_boston()
+x = datasets.data
+y = datasets.target
 
-x_train, x_test, ytrain, y_test = train_test_split(x,y,train_size=0.7, shuffle=True, random_state=1004)
+x_train, x_test, ytrain, y_test = train_test_split(
+    x, y, train_size=0.7, shuffle=True, random_state=1004)
 
 #2. 모델 구상
 input1 = Input(shape=(13,))

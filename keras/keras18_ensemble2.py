@@ -5,10 +5,10 @@ from tensorflow.python.keras.layers.core import Activation
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import r2_score
 
-x1 = np. array([range(100),range(301,401),range(1,101)])
-x2 = np .array([range(101,201),range(411,511),range(100,200)])
+x1 = np. array([range(100), range(301, 401), range(1, 101)])
+x2 = np .array([range(101, 201), range(411, 511), range(100, 200)])
 print(x1.shape)
-y1 = np.array([range(1001,1101)])
+y1 = np.array([range(1001, 1101)])
 print(y1.shape)
 # x1 = np.transpose(x1)
 # x2 = np.transpose(x2)
@@ -48,7 +48,7 @@ print(y1.shape)
 # merge2 = Dense(10)(merge1)
 # merge3 = Dense(5, activation='relu')(merge2)
 # # last_output = Dense(1)(merge3) input = 2 , output = 1
-# # last_output1, last_output2 input =2 , output=2 
+# # last_output1, last_output2 input =2 , output=2
 # output21 = Dense(7)(merge3)
 # last_output1 = Dense(1)(output21)
 
@@ -66,4 +66,3 @@ print(y1.shape)
 # loss=model.evaluate([x1_test,x2_test],[y1_test,y2_test])
 # print('loss: ',loss[0])
 # print('metrics[mae] :', loss[1])
-

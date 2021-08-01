@@ -6,9 +6,9 @@ from tensorflow.keras.layers import Dense, Input
 import numpy as np
 
 #1. 데이터
-x = np.array([1,2,3,4,5])
-y = np.array([1,2,4,3,5])
-x_pred=[6]
+x = np.array([1, 2, 3, 4, 5])
+y = np.array([1, 2, 4, 3, 5])
+x_pred = [6]
 
 #2. 모델 구성
 input1 = Input(shape=(1,))

@@ -3,7 +3,7 @@ from tensorflow.keras.layers import Dense
 from matplotlib import pyplot as plt
 import numpy as np
 
-#1. 데이터
+#1. 데이터`
 x = np.array([range(10), range(21, 31), range(201, 211)])
 x = np.transpose(x)
 

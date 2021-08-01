@@ -19,7 +19,8 @@ import numpy as np
 x = np.array(range(100))
 y = np.array(range(1, 101))
 
-x_train, x_test, y_train, y_test = train_test_split(x, y, test_size=0.3, shuffle=True, random_state=60)
+x_train, x_test, y_train, y_test = train_test_split(
+    x, y, test_size=0.3, shuffle=True, random_state=60)
 
 #2. 모델 구성
 model = Sequential()
@@ -38,7 +39,7 @@ model.compile(loss='mse', optimizer='adam')
 model.fit(x_train, y_train, epochs=500, batch_size=1)
 
 #4. 평가, 예측
-loss = model.evaluate(x_test, y_test) 
+loss = model.evaluate(x_test, y_test)
 print('loss : ', loss)
 
 y_predict = model.predict(x_test)
