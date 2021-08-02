@@ -2,10 +2,10 @@ import numpy as np
 from sklearn import datasets
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import r2_score
-from tensorflow.keras.models import Sequential,load_model
+from tensorflow.keras.models import Sequential, load_model
 from tensorflow.keras.layers import Dense
 from sklearn.datasets import load_diabetes
-from tensorflow.keras.callbacks import EarlyStopping,ModelCheckpoint
+from tensorflow.keras.callbacks import EarlyStopping, ModelCheckpoint
 
 #1. 데이터
 datasets = load_diabetes()
@@ -33,7 +33,6 @@ x_train, x_test, y_train, y_test = train_test_split(
 # model.add(Dense(1))
 
 
-
 #3. 컴파일, 훈련
 # model.compile(loss='mse', optimizer='adam')
 # es = EarlyStopping(monitor='val_loss', patience=20, mode='min', verbose=1)
@@ -44,7 +43,7 @@ x_train, x_test, y_train, y_test = train_test_split(
 
 # model.save('./_save/ModelCheckPoint/keras47_model_save.h5')
 # model = load_model('./_save/ModelCheckPoint/keras47_model_save.h5') # save_model
-model = load_model('./_save/ModelCheckPoint/keras47_MCP.hdf5') #체크포인트
+model = load_model('./_save/ModelCheckPoint/keras47_MCP.hdf5')  # 체크포인트
 
 #4. 평가, 예측
 loss = model.evaluate(x_test, y_test)

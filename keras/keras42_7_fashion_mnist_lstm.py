@@ -1,9 +1,9 @@
 from tensorflow.keras.datasets import fashion_mnist
 import numpy as np
 import matplotlib.pyplot as plt
-from tensorflow.keras.models import Sequential,Model
+from tensorflow.keras.models import Sequential, Model
 from sklearn.preprocessing import OneHotEncoder
-from tensorflow.keras.layers import Dense, Conv2D, Flatten, MaxPool2D, Dropout, Input,LSTM
+from tensorflow.keras.layers import Dense, Conv2D, Flatten, MaxPool2D, Dropout, Input, LSTM
 from sklearn.preprocessing import MinMaxScaler
 import time
 from tensorflow.keras.callbacks import EarlyStopping
@@ -34,7 +34,7 @@ x_test = x_test.reshape(x_test.shape[0], x_test.shape[1], 1)
 input1 = Input(shape=(28*28, 1))
 lstm = LSTM(units=50, activation='relu')(input1)
 dense1 = Dense(32, activation='relu')(lstm)
-output1 = Dense(10,activation="softmax")(dense1)
+output1 = Dense(10, activation="softmax")(dense1)
 
 model = Model(inputs=input1, outputs=output1)
 
@@ -53,5 +53,3 @@ loss = model.evaluate(x_test, y_test)
 print('time', end_time)
 print('loss : ', loss[0])
 print('acc : ', loss[1])
-
-

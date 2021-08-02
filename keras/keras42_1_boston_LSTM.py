@@ -25,7 +25,7 @@ x_train = x_train.reshape(x_train.shape[0], x_train.shape[1], 1)
 x_test = x_test.reshape(x_test.shape[0], x_test.shape[1], 1)
 
 #2. 모델 구성
-input1 = Input(shape=(13,1))
+input1 = Input(shape=(13, 1))
 lstm = LSTM(units=256, activation='relu')(input1)
 dense1 = Dense(256, activation='relu')(lstm)
 dense2 = Dense(256, activation='relu')(dense1)
@@ -42,7 +42,7 @@ model = Model(inputs=input1, outputs=output1)
 model.compile(loss='mse', optimizer='adam')
 es = EarlyStopping(monitor='val_loss', patience=30, mode='min', verbose=1)
 model.fit(x_train, y_train, epochs=500, batch_size=16,
-          validation_split=0.2, verbose=2,callbacks=[es])
+          validation_split=0.2, verbose=2, callbacks=[es])
 
 #4. 평가, 예측
 loss = model.evaluate(x_test, y_test)

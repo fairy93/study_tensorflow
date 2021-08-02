@@ -1,3 +1,4 @@
+import datetime
 from tensorflow.keras.layers import Dense, Input
 from tensorflow.keras.models import Model
 from keras.callbacks import EarlyStopping, ModelCheckpoint
@@ -62,12 +63,11 @@ model.summary()
 model.compile(loss='mse', optimizer='adam', metrics=['mae'])
 es = EarlyStopping(monitor='val_loss', patience=20,
                    mode='auto', verbose=1, restore_best_weights=False)
-import datetime
 date = datetime.datetime.now()
-date_time=date.strftime("%m%d_%H%M")
+date_time = date.strftime("%m%d_%H%M")
 filepath = './_save/ModelCheckPoint/'
 filename = '.{epoch:04d}--{val_loss:.4f}.hdf5'
-modelpath = "".join([filepath, "k47_",date_time,"_",filename])
+modelpath = "".join([filepath, "k47_", date_time, "_", filename])
 
 mcp = ModelCheckpoint(monitor='val_loss', mode='auto', verbose=1,
                       save_best_only=True, filepath=filepath+filename)

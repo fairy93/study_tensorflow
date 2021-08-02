@@ -13,20 +13,20 @@ from sklearn.preprocessing import MinMaxScaler
 (x_train, y_train), (x_test, y_test) = mnist.load_data()
 
 x_train = x_train.reshape(60000, 28*28*1)
-x_test = x_test.reshape(10000, 28*28* 1)
+x_test = x_test.reshape(10000, 28*28 * 1)
 
 scaler = MinMaxScaler()
 scaler.fit(x_train)
 x_train = scaler.transform(x_train)
 x_test = scaler.transform(x_test)
 
-x_train = x_train.reshape(60000, 28,28)
-x_test = x_test.reshape(10000, 28,28)
+x_train = x_train.reshape(60000, 28, 28)
+x_test = x_test.reshape(10000, 28, 28)
 
 
 onehot = OneHotEncoder(sparse=False)
-y_train = y_train.reshape(-1,1)
-y_test = y_test.reshape(-1,1)
+y_train = y_train.reshape(-1, 1)
+y_test = y_test.reshape(-1, 1)
 onehot.fit(y_train)
 y_train = onehot.transform(y_train)
 y_test = onehot.transform(y_test)
@@ -47,7 +47,7 @@ model.compile(loss='categorical_crossentropy',
 es = EarlyStopping(monitor='val_loss', patience=15, mode='min', verbose=1)
 start_time = time.time()
 model.fit(x_train, y_train, epochs=1000,
-          batch_size=256, verbose=2, validation_split=0.2,callbacks=[es])
+          batch_size=256, verbose=2, validation_split=0.2, callbacks=[es])
 end_time = time.time()-start_time
 
 

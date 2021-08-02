@@ -20,7 +20,7 @@ y = datasets.target
 # print(np.min(y),np.max(y))
 x_train, x_test, y_train, y_test = train_test_split(
     x, y, train_size=0.8, shuffle=True, random_state=104)
-    
+
 #2. 모델 구성
 model = Sequential()
 model.add(Dense(5, input_dim=10))

@@ -55,7 +55,7 @@ dense4 = Dense(128, activation='relu')(dense3)
 dense5 = Dense(64, activation='relu')(dense4)
 dense6 = Dense(32, activation='relu')(dense5)
 dense7 = Dense(32, activation='relu')(dense6)
-output1 = Dense(3,activation="softmax")(dense7)
+output1 = Dense(3, activation="softmax")(dense7)
 
 model = Model(inputs=input1, outputs=output1)
 

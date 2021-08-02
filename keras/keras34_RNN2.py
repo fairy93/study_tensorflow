@@ -14,7 +14,7 @@ x = x.reshape(4, 3, 1)  # (batch_size, timesteps, feature)
 model = Sequential()
 # model.add(SimpleRNN(units=10,activation='relu',input_shape=(3,1)))
 # input_length : 시퀀스 데이터의 입력 길이
-model.add(SimpleRNN(10,activation='relu', input_length=3, input_dim=1))
+model.add(SimpleRNN(10, activation='relu', input_length=3, input_dim=1))
 model.add(Dense(10, activation='relu'))
 model.add(Dense(1))
 model.summary()

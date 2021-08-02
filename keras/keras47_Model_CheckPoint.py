@@ -2,10 +2,10 @@ import numpy as np
 from sklearn import datasets
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import r2_score
-from tensorflow.keras.models import Sequential,load_model
+from tensorflow.keras.models import Sequential, load_model
 from tensorflow.keras.layers import Dense
 from sklearn.datasets import load_diabetes
-from tensorflow.keras.callbacks import EarlyStopping,ModelCheckpoint
+from tensorflow.keras.callbacks import EarlyStopping, ModelCheckpoint
 
 #1. 데이터
 datasets = load_diabetes()
@@ -36,8 +36,9 @@ model.add(Dense(1))
 model.compile(loss='mse', optimizer='adam')
 es = EarlyStopping(monitor='val_loss', patience=20, mode='min', verbose=1)
 cp = ModelCheckpoint(monitor='val_loss', save_best_only=True, mode='auto',
-                        filepath='./_save/ModelCheckPoint/keras47_MCP.hdf5')
-model.fit(x_train,y_train,epochs=500, batch_size=32, validation_split=0.2,callbacks=[es,cp],verbose=2)
+                     filepath='./_save/ModelCheckPoint/keras47_MCP.hdf5')
+model.fit(x_train, y_train, epochs=500, batch_size=32,
+          validation_split=0.2, callbacks=[es, cp], verbose=2)
 
 model.save('./_save/ModelCheckPoint/keras47_model_save.h5')
 

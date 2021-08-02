@@ -13,7 +13,7 @@ x = x.reshape(4, 3, 1)  # (batch_size, timesteps, feature)
 
 #2. 모델 구성
 model = Sequential()
-model.add(SimpleRNN(units=10, activation='relu', input_shape=(3, 1)))
+model.add(SimpleRNN(units=20, activation='relu', input_shape=(3, 1)))
 model.add(Dense(10, activation='relu'))
 model.add(Dense(1))
 model.summary()
@@ -34,7 +34,6 @@ print(res)
 # [[8.]]
 
 # param 이해하기!!
-# _________________________________________________________________
 # Layer (type)                 Output Shape              Param #
 # =================================================================
 # simple_rnn (SimpleRNN)       (None, 10)                120

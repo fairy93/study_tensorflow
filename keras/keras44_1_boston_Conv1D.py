@@ -2,7 +2,7 @@ from sklearn.datasets import load_boston
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import r2_score
 from tensorflow.keras.models import Sequential, Model
-from tensorflow.keras.layers import Dense, Input, Conv2D, Flatten, MaxPooling2D, GlobalAveragePooling1D, Dropout,Conv1D
+from tensorflow.keras.layers import Dense, Input, Conv2D, Flatten, MaxPooling2D, GlobalAveragePooling1D, Dropout, Conv1D
 from matplotlib import pyplot as plt
 import numpy as np
 from sklearn.preprocessing import OneHotEncoder

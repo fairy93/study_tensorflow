@@ -46,13 +46,12 @@ dense13 = Dense(10, activation='relu')(dense12)
 dense14 = Dense(10, activation='relu')(dense13)
 output2 = Dense(8, name='output2')(dense14)
 
+# merge1 = concatenate([output1, output2])
+# merge2 = Dense(10)(merge1)
+# merge3 = Dense(5, activation='relu')(merge2)
 
-        # merge1 = concatenate([output1, output2])
-        # merge2 = Dense(10)(merge1)
-        # merge3 = Dense(5, activation='relu')(merge2)
-
-        # last_output = Dense(1)(merge3)
-        # model = Model(inputs=[input1, input2], outputs=last_output)
+# last_output = Dense(1)(merge3)
+# model = Model(inputs=[input1, input2], outputs=last_output)
 
 
 # #3. 컴파일 구현

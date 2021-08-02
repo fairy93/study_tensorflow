@@ -58,11 +58,11 @@ model = Model(inputs=[input1, input2], outputs=last_output)
 #3. 컴파일 구현
 model.compile(loss='mse', optimizer='adam')
 es = EarlyStopping(monitor='loss', patience=20, mode='min', verbose=1)
-model.fit([x1,x2], y, epochs=1000, batch_size=32, verbose=1, callbacks=[es])
+model.fit([x1, x2], y, epochs=1000, batch_size=32, verbose=1, callbacks=[es])
 
 
 #4. 평가, 예측
-loss = model.evaluate([x1,x2], y)
+loss = model.evaluate([x1, x2], y)
 res = model.predict([x1_predict, x2_predict])
 print('loss: ', loss)
 print('res', res)
