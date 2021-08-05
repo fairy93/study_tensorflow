@@ -24,7 +24,5 @@ xy_train = train_datagen.flow_from_directory(
 )
 
 
-np.save('./_save/_npy/k59_7_train_x.npy',arr=xy_train[0][0])
-np.save('./_save/_npy/k59_7_train_y.npy',arr=xy_train[0][1])
-
-
+np.save('./_save/_npy/k59_7_train_x.npy', arr=xy_train[0][0])
+np.save('./_save/_npy/k59_7_train_y.npy', arr=xy_train[0][1])

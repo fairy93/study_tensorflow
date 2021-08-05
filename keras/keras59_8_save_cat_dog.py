@@ -13,24 +13,23 @@ train_datagen = ImageDataGenerator(
     fill_mode='nearest'
 )
 
-test_datagen = ImageDataGenerator(rescale=1./255) # 테스셋은 증폭x
+test_datagen = ImageDataGenerator(rescale=1./255)  # 테스셋은 증폭x
 
 xy_train = train_datagen.flow_from_directory(
     '../_data/cat_dog/training_set',
-    target_size=(150,150),
+    target_size=(150, 150),
     batch_size=2000,
     class_mode='binary'
 )
 
 xy_test = test_datagen.flow_from_directory(
     '../_data/cat_dog/test_set',
-    target_size=(150,150),
+    target_size=(150, 150),
     batch_size=2000,
     class_mode='binary'
 )
 
-np.save('./_save/_npy/k59_8_train_x.npy',arr=xy_train[0][0])
-np.save('./_save/_npy/k59_8_train_y.npy',arr=xy_train[0][1])
-np.save('./_save/_npy/k59_8_test_x.npy',arr=xy_train[0][0])
-np.save('./_save/_npy/k59_8_test_y.npy',arr=xy_train[0][1])
-
+np.save('./_save/_npy/k59_8_train_x.npy', arr=xy_train[0][0])
+np.save('./_save/_npy/k59_8_train_y.npy', arr=xy_train[0][1])
+np.save('./_save/_npy/k59_8_test_x.npy', arr=xy_train[0][0])
+np.save('./_save/_npy/k59_8_test_y.npy', arr=xy_train[0][1])

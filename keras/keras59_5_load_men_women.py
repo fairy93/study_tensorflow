@@ -13,8 +13,10 @@ y_train = np.load('./_save/_npy/k59_5_train_y.npy')
 # x_test = np.load('./_save/_npy/k59_5_test_x.npy')
 # y_test = np.load('./_save/_npy/k59_5_test_y.npy')
 x_pred = np.load('./_save/_npy/k59_5_pred_x.npy')
-x_train, x_test,y_train,y_test = train_test_split(x_train,y_train, train_size=0.7,shuffle=True, random_state=79)
-print(x_train.shape, y_train.shape, x_test.shape, y_test.shape, x_pred.shape) # (2100, 150, 150, 3) (2100,) (900, 150, 150, 3) (900,) (1, 150, 150, 3)
+x_train, x_test, y_train, y_test = train_test_split(
+    x_train, y_train, train_size=0.7, shuffle=True, random_state=79)
+# (2100, 150, 150, 3) (2100,) (900, 150, 150, 3) (900,) (1, 150, 150, 3)
+print(x_train.shape, y_train.shape, x_test.shape, y_test.shape, x_pred.shape)
 
 #2 모델
 model = Sequential()
@@ -56,6 +58,6 @@ print(loss)
 
 # 내 사진으로 예측하기
 y_predict = model.predict([x_pred])
-print('res',(1-y_predict)*100)
+print('res', (1-y_predict)*100)
 # [0.6816971898078918, 0.5755555629730225]
 # res [[42.678295]]

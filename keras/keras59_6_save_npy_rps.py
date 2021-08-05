@@ -32,7 +32,7 @@ xy_train = train_datagen.flow_from_directory(
 #     subset='validation'
 # )
 
-np.save('./_save/_npy/k59_6_train_x.npy',arr=xy_train[0][0])
-np.save('./_save/_npy/k59_6_train_y.npy',arr=xy_train[0][1])
+np.save('./_save/_npy/k59_6_train_x.npy', arr=xy_train[0][0])
+np.save('./_save/_npy/k59_6_train_y.npy', arr=xy_train[0][1])
 # np.save('./_save/_npy/k59_6_test_x.npy',arr=xy_test[0][0])
 # np.save('./_save/_npy/k59_6_test_y.npy',arr=xy_test[0][1])

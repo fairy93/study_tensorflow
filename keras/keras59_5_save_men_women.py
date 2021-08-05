@@ -16,7 +16,7 @@ test_datagen = ImageDataGenerator(rescale=1./255)
 
 xy_train = train_datagen.flow_from_directory(
     '../_data/men_women',
-    target_size=(150,150),
+    target_size=(150, 150),
     batch_size=2000,
     class_mode='binary',
     shuffle=True,
@@ -34,13 +34,13 @@ xy_train = train_datagen.flow_from_directory(
 
 x_pred = train_datagen.flow_from_directory(
     '../_data/kdj',
-    target_size=(150,150),
+    target_size=(150, 150),
     batch_size=2000,
     class_mode='binary',
 )
 
-np.save('./_save/_npy/k59_5_train_x.npy',arr=xy_train[0][0])
-np.save('./_save/_npy/k59_5_train_y.npy',arr=xy_train[0][1])
+np.save('./_save/_npy/k59_5_train_x.npy', arr=xy_train[0][0])
+np.save('./_save/_npy/k59_5_train_y.npy', arr=xy_train[0][1])
 # np.save('./_save/_npy/k59_5_test_x.npy',arr=xy_test[0][0])
 # np.save('./_save/_npy/k59_5_test_y.npy',arr=xy_test[0][1])
-np.save('./_save/_npy/k59_5_pred_x.npy',arr=x_pred[0][0])
+np.save('./_save/_npy/k59_5_pred_x.npy', arr=x_pred[0][0])
