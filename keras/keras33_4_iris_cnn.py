@@ -23,7 +23,7 @@ y = datasets.target
 onehot = OneHotEncoder(sparse=False)
 
 y = to_categorical(y)
-
+print(y)
 x_train, x_test, y_train, y_test = train_test_split(
     x, y, test_size=0.3, shuffle=True, random_state=70)
 
