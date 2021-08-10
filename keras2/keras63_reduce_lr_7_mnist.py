@@ -50,7 +50,7 @@ es = EarlyStopping(monitor='val_loss', patience=5, mode='min')
 model.compile(loss='categorical_crossentropy',
               optimizer=optimizer, metrics=['accuracy'])
 model.fit(x_train, y_train, epochs=1000, batch_size=32,
-          validation_split=0.2, verbose=3, callbacks=[es])
+          validation_split=0.2, verbose=3, callbacks=[es,reduce_lr])
 
 
 #4. 평가, 예측

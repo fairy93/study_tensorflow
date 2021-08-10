@@ -45,9 +45,8 @@ from tensorflow.keras.callbacks import EarlyStopping,ReduceLROnPlateau
 from tensorflow.keras.optimizers import Adam
 
 optimizer = Adam(lr=0.001)
-model.compile(loss='mse', optimizer=optimizer)
 reduce_lr = ReduceLROnPlateau(monitor='val_loss',patience=5, mode='auto',verbose=1,factor=0.5)
-model.compile(loss='binary_crossentropy', optimizer='adam', metrics=['acc'])
+model.compile(loss='binary_crossentropy', optimizer=optimizer, metrics=['acc'])
 es = EarlyStopping(monitor='val_loss', patience=20, mode='min')
 model.fit(x_train, y_train, epochs=1000, batch_size=32,
           validation_split=0.2, callbacks=[es,reduce_lr])
