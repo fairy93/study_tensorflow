@@ -16,12 +16,18 @@ x_train, x_test, y_train, y_test = train_test_split(
     x, y, test_size=0.3, shuffle=True, random_state=79)
 
 #2. 모델 구성
-model = LinearRegression()
+# model = LinearRegression()
 # model.score :  0.7392832939303402
 # r2 :  0.7392832939303402
 # model = RandomForestRegressor()
 # model.score :  0.8551509503623276
 # r2 :  0.8551509503623276
+# model = KNeighborsRegressor()
+# model.score :  0.5291986938774944
+# r2 :  0.5291986938774944
+model = DecisionTreeRegressor()
+# model.score :  0.6232906413940216
+# r2 :  0.6232906413940216
 
 # #3. 컴파일구현
 model.fit(x_train, y_train)

@@ -21,9 +21,15 @@ x_train, x_test, y_train, y_test = train_test_split(
 # model = LinearRegression()
 # model.score :  0.44040657403728
 # r2 :  0.44040657403728
-model = RandomForestRegressor()
+# model = RandomForestRegressor()
 # model.score :  0.42105672248752013
 # r2 :  0.42105672248752013
+# model = KNeighborsRegressor()
+# model.score :  0.3333959730299869
+# r2 :  0.3333959730299869
+model = DecisionTreeRegressor()
+# model.score :  0.048539587586240995
+# r2 :  0.048539587586240995
 
 #3. 컴파일, 훈련
 model.fit(x_train,y_train)
