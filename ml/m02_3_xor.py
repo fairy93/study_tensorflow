@@ -1,5 +1,5 @@
 from sklearn.metrics import accuracy_score
-from sklearn.svm import LinearSVC, SVC
+from sklearn.svm import LinearSVC
 
 #1. 데이터
 x_data = [[0, 0], [0, 1], [1, 0], [1, 1]]
@@ -19,7 +19,7 @@ results = model.score(x_data, y_data)
 print('model.score : ', results)
 
 acc = accuracy_score(y_data, y_predict)
-print('acc_scored : ', acc)
+print('acc_score : ', acc)
 
 
 # [[0, 0], [0, 1], [1, 0], [1, 1]] 의 예측결과 : [0 1 0 1]

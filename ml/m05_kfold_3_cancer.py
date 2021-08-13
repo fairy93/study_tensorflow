@@ -1,25 +1,25 @@
-from sklearn.model_selection import train_test_split, KFold, cross_val_score
+import warnings
+import numpy as np
+
+from sklearn.model_selection import cross_val_score, KFold
 from sklearn.ensemble import RandomForestClassifier
-from sklearn.tree import DecisionTreeClassifier
-from sklearn.linear_model import LogisticRegression
 from sklearn.neighbors import KNeighborsClassifier
+from sklearn.linear_model import LogisticRegression
+from sklearn.tree import DecisionTreeClassifier
 from sklearn.svm import LinearSVC, SVC
 from sklearn.datasets import load_breast_cancer
-from sklearn import datasets
-import numpy as np
-import warnings
 
 warnings.filterwarnings('ignore')
 
-#1 데이터
+#1. 데이터
 datasets = load_breast_cancer()
 
 x = datasets.data
 y = datasets.target
 
-Kfold = KFold(n_splits=5, shuffle=True, random_state=66)
+Kfold = KFold(n_splits=5, shuffle=True, random_state=79)
 
-#2. 모델 구성
+#2. 모델
 model = LinearSVC()
 # acc :  [0.83333333 0.92982456 0.89473684 0.94736842 0.87610619] 0.8963
 # model =SVC()
@@ -35,6 +35,6 @@ model = LinearSVC()
 
 
 #3. 컴파일 훈련
-#4. 평가, 예측
+#4. 평가 예측
 scores = cross_val_score(model, x, y, cv=Kfold)  # = acc
 print('acc : ', scores, round(np.mean(scores), 4))

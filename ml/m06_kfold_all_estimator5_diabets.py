@@ -1,11 +1,10 @@
 import warnings
-from numpy.lib.npyio import load
-from sklearn.model_selection import train_test_split,KFold,cross_val_score
-from sklearn.metrics import r2_score,accuracy_score
-from sklearn.utils import all_estimators
-from sklearn.datasets import load_diabetes
-from sklearn import datasets
 import numpy as np
+
+from sklearn.model_selection import KFold,cross_val_score
+from sklearn.datasets import load_diabetes
+from sklearn.utils import all_estimators
+
 warnings.filterwarnings('ignore')
 
 #1 데이터
@@ -14,9 +13,7 @@ datasets = load_diabetes()
 x = datasets.data
 y = datasets.target
 
-x_train, x_test, y_train, y_test = train_test_split(x, y, test_size=0.3, shuffle=True, random_state=79)
-
-#2. 모델 구성
+#2. 모델
 allAlgorithms = all_estimators(type_filter='regressor') #분류 (type_filter ='regressor')
 # print(allAlgorithms) 
 kfold = KFold(n_splits=5, shuffle=True, random_state=66)

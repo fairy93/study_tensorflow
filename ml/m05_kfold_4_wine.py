@@ -1,13 +1,13 @@
-from sklearn.model_selection import train_test_split, KFold, cross_val_score
+import warnings
+import numpy as np
+
+from sklearn.model_selection import cross_val_score, KFold
 from sklearn.ensemble import RandomForestClassifier
-from sklearn.tree import DecisionTreeClassifier
-from sklearn.linear_model import LogisticRegression
 from sklearn.neighbors import KNeighborsClassifier
+from sklearn.linear_model import LogisticRegression
+from sklearn.tree import DecisionTreeClassifier
 from sklearn.svm import LinearSVC, SVC
 from sklearn.datasets import load_wine
-from sklearn import datasets
-import numpy as np
-import warnings
 
 warnings.filterwarnings('ignore')
 
@@ -19,7 +19,7 @@ y = datasets.target
 
 Kfold = KFold(n_splits=5, shuffle=True, random_state=66)
 
-#2. 모델 구성
+#2. 모델
 model = LinearSVC()
 # acc :  [0.86111111 0.94444444 0.52777778 0.88571429 0.88571429] 0.821
 # model =SVC()
@@ -34,6 +34,6 @@ model = LinearSVC()
 # acc :  [1.         0.94444444 1.         0.97142857 1.        ] 0.9832
 
 #3. 컴파일 훈련
-#4. 평가, 예측
+#4. 평가 예측
 scores = cross_val_score(model, x, y, cv=Kfold)  # = acc
 print('acc : ', scores, round(np.mean(scores), 4))

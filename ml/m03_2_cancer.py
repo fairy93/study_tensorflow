@@ -1,11 +1,11 @@
-from sklearn.svm import LinearSVC, SVC
+from sklearn.model_selection import train_test_split
+from sklearn.ensemble import RandomForestClassifier
 from sklearn.neighbors import KNeighborsClassifier
 from sklearn.linear_model import LogisticRegression
 from sklearn.tree import DecisionTreeClassifier
-from sklearn.ensemble import RandomForestClassifier
-from sklearn.datasets import load_breast_cancer
-from sklearn.model_selection import train_test_split
+from sklearn.svm import LinearSVC, SVC
 from sklearn.metrics import accuracy_score
+from sklearn.datasets import load_breast_cancer
 
 #1 데이터
 datasets = load_breast_cancer()
@@ -13,10 +13,9 @@ datasets = load_breast_cancer()
 x = datasets.data
 y = datasets.target
 
-x_train, x_test, y_train, y_test = train_test_split(
-    x, y, test_size=0.3, shuffle=True, random_state=70)
+x_train, x_test, y_train, y_test = train_test_split(x, y, test_size=0.2, shuffle=True, random_state=79)
 
-#2. 모델 구성
+#2. 모델
 # model = LinearSVC()
 # model.score  0.8888888888888888
 # acc_score  0.8888888888888888

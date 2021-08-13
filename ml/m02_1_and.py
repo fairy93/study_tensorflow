@@ -19,7 +19,7 @@ results = model.score(x_data, y_data)
 print('model.score : ', results)
 
 acc = accuracy_score(y_data, y_predict)
-print('acc_scored : ', acc)
+print('acc_score : ', acc)
 
 # [[0, 0], [0, 1], [1, 0], [1, 1]] 의 예측결과 : [0 0 0 1]
 # model.score 1.0

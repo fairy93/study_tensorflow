@@ -1,13 +1,13 @@
 import warnings
-from sklearn.model_selection import train_test_split, KFold,cross_val_score
-from sklearn.metrics import r2_score,accuracy_score
+import numpy as np
+
+from sklearn.model_selection import KFold,cross_val_score
 from sklearn.utils import all_estimators
 from sklearn.datasets import load_wine
-from sklearn import datasets
-import numpy as np
+
 warnings.filterwarnings('ignore')
 
-#1 데이터
+#1. 데이터
 datasets = load_wine()
 
 x = datasets.data
