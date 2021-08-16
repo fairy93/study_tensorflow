@@ -1,10 +1,18 @@
-# 피쳐 임포턴스가 전체 중요도에서 하위 20 ~ 25% 컬럼들을 제거 하여 데이터
-from sklearn import datasets
+import matplotlib.pyplot as plt
+import numpy as np
+import warnings
+
+from sklearn.model_selection import train_test_split, KFold, cross_val_score,GridSearchCV, RandomizedSearchCV
+from sklearn.ensemble import RandomForestClassifier
 from sklearn.tree import DecisionTreeClassifier
+from sklearn.linear_model import LogisticRegression
+from sklearn.neighbors import KNeighborsClassifier
+from sklearn.svm import LinearSVC, SVC
 from sklearn.datasets import load_iris
-from sklearn.model_selection import train_test_split
-from sklearn.ensemble import RandomForestClassifier,GradientBoostingClassifier
-from xgboost import XGBClassifier, XGBRegressor
+from sklearn.metrics import accuracy_score
+from sklearn.preprocessing import MinMaxScaler,StandardScaler
+
+warnings.filterwarnings('ignore')
 
 #1. 데이터
 datasets = load_iris()
@@ -12,9 +20,6 @@ x_train, x_test, y_train, y_test = train_test_split(datasets.data,datasets.targe
 
 #2. 모델
 model = DecisionTreeClassifier()
-# model = RandomForestClassifier()
-# model = XGBClassifier()
-# model = GradientBoostingClassifier()
 
 #3. 훈련
 model.fit(x_train,y_train)
@@ -23,10 +28,11 @@ model.fit(x_train,y_train)
 acc = model.score(x_test,y_test)
 print('acc : ',acc)
 
+# acc :  0.9666666666666667
+# [0.00751095 0.01877738 0.60129271 0.37241895]
+
 print(model.feature_importances_)
 
-import matplotlib.pyplot as plt
-import numpy as np
 
 def plot_feature_importances_dataset(modeel):
     n_features = datasets.data.shape[1]

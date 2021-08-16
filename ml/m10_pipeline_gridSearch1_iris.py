@@ -1,4 +1,5 @@
-
+import numpy as np
+import warnings
 
 from sklearn.model_selection import train_test_split, KFold, cross_val_score,GridSearchCV, RandomizedSearchCV
 from sklearn.ensemble import RandomForestClassifier
@@ -8,8 +9,7 @@ from sklearn.neighbors import KNeighborsClassifier
 from sklearn.svm import LinearSVC, SVC
 from sklearn.datasets import load_iris
 from sklearn import datasets
-import numpy as np
-import warnings
+
 from sklearn.metrics import accuracy_score
 from sklearn.preprocessing import MinMaxScaler,StandardScaler
 
