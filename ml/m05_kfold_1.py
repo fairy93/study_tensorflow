@@ -37,3 +37,4 @@ model = LinearSVC()
 #4. 평가 예측
 scores = cross_val_score(model, x, y, cv=Kfold)  # = acc(val acc?)
 print('acc : ', scores, round(np.mean(scores), 4))
+# print(scores.mean())

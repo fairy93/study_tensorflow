@@ -21,11 +21,11 @@ Kfold = KFold(n_splits=5, shuffle=True, random_state=66)
 x_train, x_test, y_train, y_test = train_test_split(
     x, y, train_size=0.8, shuffle=True, random_state=70)
 
-parameters = [
-    {"C":[1,10,100,1000], "kernel":["linear"]},
-    {"C":[1,10,100], "kernel":["rbf"],"gamma":[0.001,0.0001]},
-    {"C":[1,10,100,1000],"kernel":["sigmoid"],"gamma":[0.001, 0.0001]}
-]
+parameters = {
+    'kernel':  ['sigmoid','linear','rbf'],
+    'gamma': [1000,100,10, 1, 0, 0.1, 0.01, 0.001,0.0001],
+    'C':[1000,100, 10, 10, 0, 0.1, 0.01, 0.001,0.0001]
+}
 
 #2. 모델
 model = GridSearchCV(SVC(), parameters,cv=Kfold)
@@ -42,7 +42,7 @@ print("model.scored : ", model.score(x_test,y_test)) # =accuracy_score
 y_pred = model.predict(x_test)
 print("accuracy_score : ",accuracy_score(y_test,y_pred))
 
-# 최적의 파라미터 :  SVC(C=1000, kernel='linear')
+# 최적의 파라미터 :  SVC(C=1000, gamma=1000, kernel='linear')
 # best_score :  0.9626373626373625
 # model.scored :  0.9210526315789473
 # accuracy_score :  0.9210526315789473

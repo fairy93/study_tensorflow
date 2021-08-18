@@ -3,7 +3,6 @@ from sklearn.metrics import r2_score, accuracy_score
 from sklearn.datasets import load_iris
 from sklearn.metrics import r2_score
 from sklearn.svm import LinearSVC
-from sklearn import datasets
 
 #1 데이터
 datasets = load_iris()
@@ -11,7 +10,7 @@ datasets = load_iris()
 x = datasets.data
 y = datasets.target
 
-x_train, x_test, y_train, y_test = train_test_split(x, y, test_size=0.3, shuffle=True, random_state=79)
+x_train, x_test, y_train, y_test = train_test_split(x, y, test_size=0.2, shuffle=True, random_state=79)
 
 #2. 모델
 model = LinearSVC()

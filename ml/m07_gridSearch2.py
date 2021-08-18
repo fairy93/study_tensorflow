@@ -22,12 +22,12 @@ Kfold = KFold(n_splits=5, shuffle=True, random_state=66)
 x_train, x_test, y_train, y_test = train_test_split(
     x, y, train_size=0.8, shuffle=True, random_state=70)
 
-parameters = [
-    {"C":[1,10,100,1000], "kernel":["linear"]},
-    {"C":[1,10,100], "kernel":["rbf"],"gamma":[0.001,0.0001]},
-    {"C":[1,10,100,1000],"kernel":["sigmoid"],"gamma":[0.001, 0.0001]}
-]
 
+parameters = {
+    'kernel':  ['sigmoid','linear','rbf'],
+    'gamma': [1000,100,10, 1, 0, 0.1, 0.01, 0.001,0.0001],
+    'C':[1000,100, 10, 10, 0, 0.1, 0.01, 0.001,0.0001]
+}
 #2. 모델
 model = SVC(C=1, kernel='linear')
 
