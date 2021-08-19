@@ -1,16 +1,14 @@
-# feature_importance를 돌려 데이터가 20~25%미만인 데이터를 지우고 데이터를 재구성 한뒤
-# 모델별로 결과 구하기
-
 import matplotlib.pyplot as plt
-import pandas as pd
 import warnings
 
 from sklearn.model_selection import train_test_split
 from sklearn.ensemble import RandomForestRegressor, GradientBoostingRegressor
 from sklearn.tree import DecisionTreeRegressor
-from xgboost import XGBRegressor
 from sklearn.datasets import load_boston
+
 from xgboost import plot_importance
+from xgboost import XGBRegressor
+
 
 warnings.filterwarnings('ignore')
 
