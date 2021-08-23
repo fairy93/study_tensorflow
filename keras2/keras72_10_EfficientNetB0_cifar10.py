@@ -31,7 +31,7 @@ x_test = x_test.reshape(10000, 32, 32, 3)
 #2. 모델
 eff = EfficientNetB0(weights='imagenet', include_top=False, input_shape=(32,32,3))
 
-eff.trainable = True
+eff.trainable = False
 
 model = Sequential()
 # model.add(UpSampling2D(size=(7,7)))
@@ -96,7 +96,11 @@ print('val acc :', val_acc[-6])
 
 # ---------------------cifar100---------------------------
 # ==================  mobileNetV2.trainable = True /  Flatten  =====best=========
-
+# fit time :  323.6974296569824
+# loss :  1.061908483505249
+# val_loss :  9.26948070526123
+# acc :  0.6906889081001282
+# val acc : 0.01720000058412552
 
 # mobileNetV2.trainable = False /  Flatten
 
