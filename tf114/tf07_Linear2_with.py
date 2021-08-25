@@ -15,11 +15,11 @@ loss = tf.reduce_mean(tf.square(hypothesis - y_train))
 optimizer = tf.train.GradientDescentOptimizer(learning_rate=0.01)
 train = optimizer.minimize(loss)
 
-sess = tf.Session()
-sess.run(tf.global_variables_initializer())
+with tf.Session() as sess: 
+    sess.run(tf.global_variables_initializer())
 
-for step in range(2000):
-    sess.run(train)
-    if step % 20 == 0:
-        print('step :',step, 'loss :', sess.run(loss), 
+    for step in range(2001):
+        sess.run(train)
+        if step % 20 == 0:
+            print('step :',step, 'loss :', sess.run(loss), 
                 'W :', sess.run(W), 'b :', sess.run(b))

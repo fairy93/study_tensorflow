@@ -9,8 +9,7 @@ print(node3)
 
 sess = tf.Session()
 print('node, node2 : ',sess.run([node1,node2]))
-print('sess.run(node3'            ,sess.run(node3))
-
+print('sess.run(node3)' ,sess.run(node3))
 
 # node, node2 :  [3.0, 4.0]
 # sess.run(node3 7.0
