@@ -8,12 +8,11 @@ sess = tf.compat.v1.Session()
 sess.run(tf.global_variables_initializer())
 aaa = sess.run(W)
 print("aaa : ",aaa)
-
 sess.close()
 
 sess = tf.InteractiveSession()
 sess.run(tf.global_variables_initializer())
-bbb = W.eval() # 변수.eval
+bbb = W.eval() # val.eval
 print('bbb : ',bbb)
 sess.close()
 
