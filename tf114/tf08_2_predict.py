@@ -19,17 +19,16 @@ hypothesis = x_train * W + b
 
 loss = tf.compat.v1.reduce_mean(tf.square(hypothesis - y_train))
 
-optimizer = tf.compat.v1.train.GradientDescentOptimizer(learning_rate=0.02)
+optimizer = tf.compat.v1.train.GradientDescentOptimizer(learning_rate=0.177)
 train = optimizer.minimize(loss)
 
 sess = tf.Session()
 sess.run(tf.compat.v1.global_variables_initializer())
 
-for step in range(2000):
+for step in range(2001):
     _, loss_val, W_val, b_val = sess.run([train, loss, W, b], feed_dict={x_train:[1,2,3], y_train:[3,5,7]})
     if step % 20 == 0:
-        print('step :',step, 'loss :', loss_val, 
-                'W :', W_val, 'b :', b_val)
+        print('step :',step, 'loss :', loss_val, 'W :', W_val, 'b :', b_val)
 
 
 x_test = tf.compat.v1.placeholder(tf.float32, shape=[None])
@@ -44,3 +43,6 @@ print("pred [4] :",pred1)
 print("pred [5, 6] :",pred2)
 print("pred [6, 7, 8] :",pred3)
 
+# pred [4] : [9.000018]
+# pred [5, 6] : [11.000022 13.000027]
+# pred [6, 7, 8] : [13.000027  15.0000305 17.000034 ]

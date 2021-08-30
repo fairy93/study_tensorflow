@@ -5,6 +5,7 @@ tf.set_random_seed(66)
 x_train = [1,2,3]
 y_train = [3,5,7]
 
+# random_normal 표준분포
 W = tf.Variable(tf.random_normal([1]), dtype = tf.float32) 
 b = tf.Variable(tf.random_normal([1]), dtype = tf.float32) 
 
