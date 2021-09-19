@@ -1,40 +1,74 @@
-from sklearn.model_selection import train_test_split
-from sklearn.metrics import r2_score
-from sklearn.datasets import load_diabetes
-from sklearn.preprocessing import MinMaxScaler
+import time
 
+from tensorflow.keras.datasets import cifar100
+from tensorflow.keras.layers import Dense,Conv2D,Flatten,MaxPooling2D
 from tensorflow.keras.models import Sequential
-from tensorflow.keras.layers import Dense
+from tensorflow.keras.callbacks import EarlyStopping
+from tensorflow.keras.utils import to_categorical
+
+from sklearn.preprocessing import StandardScaler
 
 #1. 데이터
-datasets = load_diabetes()
-x = datasets.data
-y = datasets.target
+(x_train,y_train),(x_test,y_test) = cifar100.load_data()
 
-x_train, x_test, y_train, y_test = train_test_split(
-    x, y, train_size=0.8, shuffle=True, random_state=67)
+x_train = x_train.reshape(50000,32*32*3)
+x_test = x_test.reshape(10000,32*32*3)
 
-scaler = MinMaxScaler()
+scaler = StandardScaler()
 x_train = scaler.fit_transform(x_train)
 x_test = scaler.transform(x_test)
 
+x_train = x_train.reshape(50000,32,32,3)
+x_test = x_test.reshape(10000,32,32,3)
+
+y_train = to_categorical(y_train)
+y_test = to_categorical(y_test)
+
 #2. 모델
 model = Sequential()
-model.add(Dense(100, input_dim=10))
-model.add(Dense(64,activation='relu'))
-model.add(Dense(64,activation='relu'))
-model.add(Dense(32,activation='relu'))
-model.add(Dense(1))
+model.add(Conv2D(filters=128,kernel_size=(2,2),padding='same',input_shape=(32,32,3)))
+model.add(Conv2D(100,(2,2),activation='relu'))
+model.add(Conv2D(100,(2,2),activation='relu'))
+model.add(MaxPooling2D())
+model.add(Conv2D(80,(2,2),activation='relu'))
+model.add(Conv2D(80,(2,2),activation='relu'))
+model.add(MaxPooling2D())
+model.add(Flatten())
+model.add(Dense(512, activation='relu'))
+model.add(Dense(256, activation='relu'))
+model.add(Dense(128, activation='relu'))
+model.add(Dense(100, activation='softmax'))
 
 
 #3. 컴파일 훈련
-model.compile(loss='mse',optimizer='adam')
-model.fit(x_train,y_train,epochs=200,batch_size=32,validation_split=0.1,verbose=2)
+es = EarlyStopping(monitor='val_loss',patience=30,mode='min')
+model.compile(loss='categorical_crossentropy',optimizer='adam',metrics=['acc'])
+start_time = time.time()
+model.fit(x_train,y_train,epochs=1000,batch_size=256,validation_split=0.1,verbose=2,callbacks=[es])
+end_time = time.time() - start_time
 
-#4. 평가 예측
+#3. 평가
 loss = model.evaluate(x_test,y_test)
-pred = model.predict(x_test)
+print('time ',end_time)
+print('loss ',loss[0])
+print('acc' , loss[1])
 
-#5. r2 예측
-r2 = r2_score(y_test,pred)
-print(r2)
+
+# loss :  3.7575008869171143
+# acc :  0.6108999848365784
+
+# 결과 210721 MinMaxScaler()
+# time 48.33287310600281
+# loss 2.3105974197387695
+# acc 0.652999997138977
+
+# 결과 210721 StandardScaler()
+# time 40.282625913619995
+# loss 2.5071310997009277
+# acc 0.6467999815940857
+
+
+# 결과 210917 StandardScaler()
+# time 40.282625913619995
+# loss 2.5071310997009277
+# acc 0.6467999815940857
