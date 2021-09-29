@@ -1,74 +1,63 @@
 import time
 
-from tensorflow.keras.datasets import cifar100
-from tensorflow.keras.layers import Dense,Conv2D,Flatten,MaxPooling2D
-from tensorflow.keras.models import Sequential
-from tensorflow.keras.callbacks import EarlyStopping
-from tensorflow.keras.utils import to_categorical
+from sklearn.datasets import load_diabetes
+from sklearn.model_selection import train_test_split
+from sklearn.preprocessing import MinMaxScaler
+from sklearn.metrics import r2_score
 
-from sklearn.preprocessing import StandardScaler
+from tensorflow.keras.models import Sequential
+from tensorflow.keras.layers import Dense, Conv2D, GlobalAveragePooling2D
+from tensorflow.keras.callbacks import EarlyStopping
 
 #1. 데이터
-(x_train,y_train),(x_test,y_test) = cifar100.load_data()
+datasets = load_diabetes()
+x = datasets.data
+y = datasets.target
 
-x_train = x_train.reshape(50000,32*32*3)
-x_test = x_test.reshape(10000,32*32*3)
+x_train, x_test, y_train, y_test = train_test_split(x,y,train_size=0.8,shuffle=True, random_state=67)
 
-scaler = StandardScaler()
+scaler = MinMaxScaler()
 x_train = scaler.fit_transform(x_train)
 x_test = scaler.transform(x_test)
 
-x_train = x_train.reshape(50000,32,32,3)
-x_test = x_test.reshape(10000,32,32,3)
-
-y_train = to_categorical(y_train)
-y_test = to_categorical(y_test)
+x_train = x_train.reshape(x_train.shape[0], x_train.shape[1], 1, 1)
+x_test = x_test.reshape(x_test.shape[0], x_test.shape[1], 1, 1)
 
 #2. 모델
 model = Sequential()
-model.add(Conv2D(filters=128,kernel_size=(2,2),padding='same',input_shape=(32,32,3)))
-model.add(Conv2D(100,(2,2),activation='relu'))
-model.add(Conv2D(100,(2,2),activation='relu'))
-model.add(MaxPooling2D())
-model.add(Conv2D(80,(2,2),activation='relu'))
-model.add(Conv2D(80,(2,2),activation='relu'))
-model.add(MaxPooling2D())
-model.add(Flatten())
-model.add(Dense(512, activation='relu'))
-model.add(Dense(256, activation='relu'))
-model.add(Dense(128, activation='relu'))
-model.add(Dense(100, activation='softmax'))
+model.add(Conv2D(filters=100,kernel_size=(2,2),padding='same',input_shape=(x_train.shape[1],1,1)))
+model.add(Conv2D(128, (2, 2), padding='same', activation='relu'))
+model.add(Conv2D(256, (2, 2), padding='same', activation='relu'))
+model.add(Conv2D(256, (2, 2), padding='same', activation='relu'))
+model.add(Conv2D(100, (2, 2), padding='same', activation='relu'))
+model.add(Conv2D(100, (2, 2), padding='same', activation='relu'))
+model.add(Conv2D(80, (2, 2), padding='same', activation='relu'))
+model.add(Conv2D(80, (2, 2), padding='same', activation='relu'))
+model.add(GlobalAveragePooling2D())
+model.add(Dense(1))
 
 
-#3. 컴파일 훈련
-es = EarlyStopping(monitor='val_loss',patience=30,mode='min')
-model.compile(loss='categorical_crossentropy',optimizer='adam',metrics=['acc'])
+#3. 컴파일 구현
+model.compile(loss='mse', optimizer='adam')
+es = EarlyStopping(monitor='val_loss', patience=100, mode='min')
 start_time = time.time()
-model.fit(x_train,y_train,epochs=1000,batch_size=256,validation_split=0.1,verbose=2,callbacks=[es])
-end_time = time.time() - start_time
+model.fit(x_train, y_train, epochs=1000, batch_size=32,
+          validation_split=0.1, verbose=2, callbacks=[es])
+end_time = time.time()-start_time
 
-#3. 평가
-loss = model.evaluate(x_test,y_test)
-print('time ',end_time)
-print('loss ',loss[0])
-print('acc' , loss[1])
+#4. 평가 예측
+loss = model.evaluate(x_test, y_test)
+y_predict = model.predict(x_test)
 
+#5. r2
+r2 = r2_score(y_test, y_predict)
 
-# loss :  3.7575008869171143
-# acc :  0.6108999848365784
-
-# 결과 210721 MinMaxScaler()
-# time 48.33287310600281
-# loss 2.3105974197387695
-# acc 0.652999997138977
-
-# 결과 210721 StandardScaler()
-# time 40.282625913619995
-# loss 2.5071310997009277
-# acc 0.6467999815940857
+print('time', end_time)
+print('loss', loss)
+print('r2', r2)
 
 
-# 결과 210917 StandardScaler()
-# time 40.282625913619995
-# loss 2.5071310997009277
-# acc 0.6467999815940857
+time 21.033281564712524
+loss 2841.651611328125
+r2 0.42989599458282846
+
